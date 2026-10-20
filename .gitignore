@@ -1,0 +1,25 @@
+# Output di build
+dist/
+build/
+*.xpi
+
+# Config locale: puo' contenere percorsi privati
+bridge-windows/swapper_path.txt
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# OS, editor e chiavi
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.pem
+*.key
+*.p12
+.env
+.env.*

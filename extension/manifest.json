@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "RTX Video Companion per YouTube",
+  "version": "1.1.1",
+  "description": "Diagnostica video YouTube, filtri opzionali, assistenza RTX Video Super Resolution e collegamento locale a DLSS5-Swapper. Non applica DLSS5 ai video.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "rtx-video-companion@example.org",
+      "strict_min_version": "115.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://m.youtube.com/*"
+  ],
+  "action": {
+    "default_title": "RTX Video Companion",
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon-48.png"
+  },
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "author": "Andr995",
+  "developer": {
+    "name": "Andr995"
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:">
+  <title>RTX Video Companion</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo" aria-hidden="true">R<span>✦</span></div>
+      <div>
+        <div class="eyebrow">FIREFOX · YOUTUBE</div>
+        <h1>RTX Video <strong>Companion</strong></h1>
+      </div>
+      <span class="vtag">v1.1.1</span>
+    </header>
+
+    <section class="panel info" aria-label="Informazioni sulle tecnologie">
+      <span class="pill">GUIDA NVIDIA</span>
+      <h2>RTX Video Super Resolution</h2>
+      <p>La qualità AI si attiva nell'app NVIDIA, non da questa estensione. Il video mantiene il percorso di riproduzione originale di Firefox.</p>
+      <button type="button" id="guideButton" class="button secondary">Come attivare RTX Video <span aria-hidden="true">↗</span></button>
+      <div id="guide" class="guide" hidden>
+        <ol>
+          <li>Aggiorna driver NVIDIA e Firefox.</li>
+          <li>Apri <b>NVIDIA App → Sistema → Video</b>.</li>
+          <li>Attiva <b>RTX Video Super Resolution</b> e scegli qualità <b>Auto</b>.</li>
+          <li>Controlla nella NVIDIA App se l'effetto è attivo mentre riproduci un video.</li>
+        </ol>
+        <p>Requisiti: Windows 10/11 e una GPU GeForce RTX. Su Linux non è ufficialmente supportato.</p>
+        <a href="https://nvidia.custhelp.com/app/answers/detail/a_id/5448/" target="_blank" rel="noopener noreferrer">Guida ufficiale NVIDIA ↗</a>
+      </div>
+    </section>
+
+    <section class="panel swapper" aria-label="Collegamento a DLSS5-Swapper">
+      <span class="pill">COLLEGAMENTO WINDOWS</span>
+      <h2>DLSS5-Swapper</h2>
+      <p>Controlla e apri l'applicazione installata sul PC tramite un <b>bridge locale</b> (Native Messaging). <b>Non applica DLSS 5 ai video YouTube</b>: Swapper è progettato per giochi ed emulatori.</p>
+      <div id="swapperStatus" class="result neutral" role="status">Verifico il collegamento locale…</div>
+      <div class="bridge-buttons">
+        <button type="button" id="checkSwapperButton" class="button secondary">Verifica collegamento</button>
+        <button type="button" id="launchSwapperButton" class="button primary" disabled>Apri DLSS5-Swapper</button>
+      </div>
+      <p class="disclaimer">Richiede l'installazione manuale del bridge incluso nel pacchetto sorgente. Nessuna modifica alle DLL di Firefox.</p>
+    </section>
+
+    <section class="panel diagnostics" aria-live="polite">
+      <div class="section-heading"><h2>Diagnostica video</h2><button id="refreshButton" title="Aggiorna" class="small-icon" aria-label="Aggiorna diagnostica">↻</button></div>
+      <div id="diagnosticText" class="result">Lettura del player…</div>
+      <div class="metrics">
+        <div><span>Sorgente video</span><strong id="sourceValue">—</strong></div>
+        <div><span>Dimensione su schermo</span><strong id="displayValue">—</strong></div>
+        <div><span>Fattore di scala</span><strong id="scaleValue">—</strong></div>
+      </div>
+      <p class="disclaimer">La diagnostica non può rilevare se il driver NVIDIA abbia effettivamente attivato RTX Video.</p>
+    </section>
+
+    <section class="panel controls">
+      <div class="section-heading"><h2>Regolazioni opzionali</h2><label class="switch"><input id="enabled" type="checkbox" aria-label="Attiva filtri"/><span class="track"></span></label></div>
+      <p class="muted">Filtri del browser, <b>non AI/DLSS</b>. Lascia disattivati per non interferire con l'upscaling NVIDIA.</p>
+      <div id="sliders" class="sliders">
+        <label><span>Nitidezza <em>· sperimentale</em></span><output id="sharpnessOut" for="sharpness">0</output><input id="sharpness" type="range" min="0" max="100" step="5" value="0"></label>
+        <label><span>Contrasto</span><output id="contrastOut" for="contrast">100%</output><input id="contrast" type="range" min="80" max="130" step="1" value="100"></label>
+        <label><span>Saturazione</span><output id="saturationOut" for="saturation">100%</output><input id="saturation" type="range" min="70" max="140" step="1" value="100"></label>
+        <label><span>Luminosità</span><output id="brightnessOut" for="brightness">100%</output><input id="brightness" type="range" min="80" max="130" step="1" value="100"></label>
+      </div>
+      <p class="warning">La nitidezza può aumentare gli artefatti e ostacolare le ottimizzazioni video hardware.</p>
+      <div class="row"><label class="checkbox-line"><input id="cinema" type="checkbox"><span>Modalità cinema automatica</span></label><button id="resetButton" class="link-button">Ripristina</button></div>
+    </section>
+    <footer>Nessun account o invio dati. Bridge locale opzionale. <b>Nessun DLSS 5 applicato ai video.</b> · Progetto: <b>Andr995</b></footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
