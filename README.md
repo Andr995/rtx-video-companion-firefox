@@ -117,23 +117,6 @@ node --check extension/popup.js
 
 Non ci sono dipendenze JS, npm o framework; le GitHub Actions eseguono test e producono il pacchetto unsigned come artifact CI.
 
-## Pubblicazione su GitHub
-
-1. Su https://github.com/new crea un repository, ad esempio **`rtx-video-companion-firefox`**, senza aggiungere un README o una licenza nuovi.
-2. Carica **i contenuti della cartella del repository** (README.md alla radice), non lo ZIP dell'estensione.
-3. Oppure, se usi Git sul PC:
-
-```bash
-git init
-git add .
-git commit -m "Initial release: RTX Video Companion by Andr995"
-git branch -M main
-git remote add origin https://github.com/TUO-USERNAME/rtx-video-companion-firefox.git
-git push -u origin main
-```
-
-Sostituisci `TUO-USERNAME` con il tuo username reale. Non inserire credenziali nei file o nei commit. Il file **`bridge-windows/swapper_path.txt` è escluso da Git** per evitare la pubblicazione di percorsi locali.
-
 ## Privacy e sicurezza
 
 L'estensione salva le impostazioni con `browser.storage.local` e non effettua chiamate di rete proprie per inviare i dati dell'utente. Il bridge usa IPC locale e apre soltanto l'eseguibile configurato; nessun invio dei video a terzi. I link esterni nella UI vengono aperti solo quando cliccati. Permessi WebExtension: `storage`, `activeTab`, `nativeMessaging`, e accesso alle sole pagine YouTube. Vedi [PRIVACY.md](docs/PRIVACY.md) e [SECURITY.md](SECURITY.md).
